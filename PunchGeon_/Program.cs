@@ -99,7 +99,7 @@ namespace PunchGeon_01
                     damage = damage - damage / 3;
                     Console.WriteLine("Damage sussefuly defensed");
                 }
-
+                //End Defense Confing
                 PS = PS - damage;
 
                 Console.WriteLine($"-{damage}");
