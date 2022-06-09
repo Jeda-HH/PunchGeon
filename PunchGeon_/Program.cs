@@ -9,18 +9,20 @@ namespace PunchGeon_01
 
         static void Main(string[] args)
         {
-
+            
             int PS = 0;
             int AT = 0;
+            int CurationsNum = 0;
             bool BloodLost = false;
             bool Defense = false;
+            bool Curation = false;
 
 
 
             Console.WriteLine("Choose a character");
 
             Console.BackgroundColor = ConsoleColor.Magenta;
-            Console.WriteLine("\ta - Catcher = 100 PS, 56 attack");
+            Console.WriteLine("\ta - Catcher = 100 PS, 56 attack, ");
 
             Console.ResetColor();
             Console.BackgroundColor = ConsoleColor.DarkGreen;
@@ -40,6 +42,8 @@ namespace PunchGeon_01
                     Console.WriteLine("PS +100, +56 attack");
                     PS = PS + 100;
                     AT = AT + 56;
+                    Curation = true;
+                    CurationsNum = CurationsNum + 2;
                     break;
 
                 case "b":
@@ -63,7 +67,7 @@ namespace PunchGeon_01
 
 
             //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-            //
+            
 
             int PSE = 120;
             Console.BackgroundColor = ConsoleColor.DarkBlue;
@@ -102,66 +106,165 @@ namespace PunchGeon_01
                 //End Defense Confing
                 PS = PS - damage;
 
-                Console.WriteLine($"-{damage}");
-                Console.WriteLine($"You have {PS}");
+                //Normal Attack
 
-                Console.WriteLine("Your turn");
-                Console.WriteLine("\ta - Attack");
-
-                Console.WriteLine("\tc - Skip");
-
-                switch (Console.ReadLine())
+                if (Curation == false)
                 {
-                    case "a":
-                        int ydamage = r.Next(10, AT);
-                        if (ydamage < 4)
-                        {
-                            Console.BackgroundColor = ConsoleColor.DarkBlue;
-                            Console.WriteLine("Miss");
-                            ydamage = 0;
-                            Console.ResetColor();
-                        }
-                        if (ydamage > 50)
-                        {
-                            Console.BackgroundColor = ConsoleColor.DarkRed;
-                            Console.WriteLine("Critial!");
-                            Console.ResetColor();
-                        }
+                    Console.WriteLine($"-{damage}");
+                    Console.WriteLine($"You have {PS}");
 
+                    Console.WriteLine("Your turn");
+                    Console.WriteLine("\ta - Attack");
 
-                        //Blood Lost Confing
+                    Console.WriteLine("\tc - Skip");
 
-
-                        if (BloodLost == true)
-                        {
-                            Random BL = new Random();
-                            int BloodL = BL.Next(1, 15);
-
-                            if (BloodL == 12)
+                    switch (Console.ReadLine())
+                    {
+                        case "a":
+                            int ydamage = r.Next(10, AT);
+                            if (ydamage < 4)
                             {
-                                PSE = PSE - 20;
+                                Console.BackgroundColor = ConsoleColor.DarkBlue;
+                                Console.WriteLine("Miss");
+                                ydamage = 0;
+                                Console.ResetColor();
+                            }
+                            if (ydamage > 50)
+                            {
                                 Console.BackgroundColor = ConsoleColor.DarkRed;
-                                Console.WriteLine("BLOODLOST!, -20 PS ENEMY");
+                                Console.WriteLine("Critial!");
                                 Console.ResetColor();
                             }
 
-                        }
+
+                            //Blood Lost Confing
+
+
+                            if (BloodLost == true)
+                            {
+                                Random BL = new Random();
+                                int BloodL = BL.Next(1, 15);
+
+                                if (BloodL == 12)
+                                {
+                                    PSE = PSE - 20;
+                                    Console.BackgroundColor = ConsoleColor.DarkRed;
+                                    Console.WriteLine("BLOODLOST!, -20 PS ENEMY");
+                                    Console.ResetColor();
+                                }
+
+                            }
 
 
 
-                        Console.WriteLine($"You have did {ydamage}");
-                        Console.WriteLine($"The enemy have {PSE}");
-                        PSE = PSE - ydamage;
-                        break;
+                            Console.WriteLine($"You have did {ydamage}");
+                            Console.WriteLine($"The enemy have {PSE}");
+                            PSE = PSE - ydamage;
+                            break;
 
-                    case "c":
-                        break;
-
-
-
-
-
+                        case "c":
+                            break;
+                    }
                 }
+
+                //Catcher Attack
+                
+                if (Curation == true)
+                {
+                    Console.WriteLine($"-{damage}");
+                    Console.WriteLine($"You have {PS}");
+
+                    Console.WriteLine("Your turn");
+                    Console.WriteLine("\ta - Attack");
+                    if (CurationsNum != 0)
+                    {
+                        Console.WriteLine("\tl - 3 Potions 20 PS");
+                    }
+                    Console.WriteLine("\tc - Skip");
+
+                    switch (Console.ReadLine())
+                    {
+                        case "a":
+                            int ydamage = r.Next(10, AT);
+                            if (ydamage < 4)
+                            {
+                                Console.BackgroundColor = ConsoleColor.DarkBlue;
+                                Console.WriteLine("Miss");
+                                ydamage = 0;
+                                Console.ResetColor();
+                            }
+                       
+
+                            if (ydamage > 50)
+                            {
+                                Console.BackgroundColor = ConsoleColor.DarkRed;
+                                Console.WriteLine("Critial!");
+                                Console.ResetColor();
+                            }
+
+
+                          
+
+
+
+                            Console.WriteLine($"You have did {ydamage}");
+                            Console.WriteLine($"The enemy have {PSE}");
+                            PSE = PSE - ydamage;
+                            break;
+
+                        case "l":
+                            if (CurationsNum != 0)
+                            {
+                                PS = PS + 20;
+                                CurationsNum = CurationsNum - 1;
+                            }
+                           
+                            if (CurationsNum == 0)
+                            {
+                                Console.BackgroundColor = ConsoleColor.DarkMagenta;
+                                Console.WriteLine("You don't have any potions");
+                                Console.ResetColor();
+
+                                Console.WriteLine("Your turn");
+                                Console.WriteLine("\ta - Attack");
+
+                                Console.WriteLine("\tc - Skip");
+
+                                switch (Console.ReadLine())
+                                {
+                                    case "a":
+                                        int ydamage2 = r.Next(10, AT);
+                                        if (ydamage2 < 4)
+                                        {
+                                            Console.BackgroundColor = ConsoleColor.DarkBlue;
+                                            Console.WriteLine("Miss");
+                                            ydamage2 = 0;
+                                            Console.ResetColor();
+                                        }
+                                        if (ydamage2 > 50)
+                                        {
+                                            Console.BackgroundColor = ConsoleColor.DarkRed;
+                                            Console.WriteLine("Critial!");
+                                            Console.ResetColor();
+                                        }
+                                        break;
+
+                                    case "c":
+                                        break;
+                                }
+
+
+
+                            }
+                            break;
+
+
+                        case "c":
+                            break;
+                    }
+                }
+
+
 
 
 
@@ -189,20 +292,21 @@ namespace PunchGeon_01
                 Console.BackgroundColor = ConsoleColor.Cyan;
                 Console.WriteLine("You beat the enemy!!! GG");
                 Console.ResetColor();
-            }
-            Console.WriteLine("you want to exit or stay here?");
-            Console.WriteLine("Exit - \te");
-            Console.WriteLine("Stay here - \ts");
+                
+                Console.WriteLine("you want to exit or stay here?");
+                Console.WriteLine("Exit - \te");
+                Console.WriteLine("Stay here - \ts");
 
-            switch (Console.ReadLine())
-            {
-                case "e":
-                    Environment.Exit(2);
-                    break;
+                switch (Console.ReadLine())
+                {
+                    case "e":
+                        Environment.Exit(2);
+                        break;
 
-                case "s":
-                    break;
+                    case "s":
+                        break;
 
+                }
             }
 
 
