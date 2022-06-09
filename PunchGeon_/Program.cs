@@ -48,7 +48,7 @@ namespace PunchGeon_01
 
                 case "b":
                     Console.WriteLine("PS +120, +45 attack");
-                    PS = PS + 20;
+                    PS = PS + 120;
                     AT = AT + 45;
                     Defense = true;
                     break;
