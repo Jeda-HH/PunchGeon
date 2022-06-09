@@ -22,11 +22,11 @@ namespace PunchGeon_01
             Console.WriteLine("Choose a character");
 
             Console.BackgroundColor = ConsoleColor.Magenta;
-            Console.WriteLine("\ta - Catcher = 100 PS, 56 attack, ");
+            Console.WriteLine("\ta - Catcher = 100 PS, 56 attack, +2 30 PS potions");
 
             Console.ResetColor();
             Console.BackgroundColor = ConsoleColor.DarkGreen;
-            Console.WriteLine("\tb - Warior = 120 PS, 45 attack");
+            Console.WriteLine("\tb - Warior = 120 PS, 45 attack, 33,3% defense");
 
             Console.ResetColor();
             Console.BackgroundColor = ConsoleColor.DarkRed;
@@ -178,7 +178,7 @@ namespace PunchGeon_01
                     Console.WriteLine("\ta - Attack");
                     if (CurationsNum != 0)
                     {
-                        Console.WriteLine("\tl - 3 Potions 20 PS");
+                        Console.WriteLine($"\tl - {CurationsNum} Potions 20 PS");
                     }
                     Console.WriteLine("\tc - Skip");
 
@@ -213,12 +213,6 @@ namespace PunchGeon_01
                             break;
 
                         case "l":
-                            if (CurationsNum != 0)
-                            {
-                                PS = PS + 20;
-                                CurationsNum = CurationsNum - 1;
-                            }
-                           
                             if (CurationsNum == 0)
                             {
                                 Console.BackgroundColor = ConsoleColor.DarkMagenta;
@@ -256,6 +250,16 @@ namespace PunchGeon_01
 
 
                             }
+
+                            if (CurationsNum != 0)
+                            {
+
+                                PS = PS + 30;
+                                CurationsNum = CurationsNum - 1;
+                                Console.WriteLine($"+20 PS, oyu have {PS}");
+                            }
+                           
+                            
                             break;
 
 
