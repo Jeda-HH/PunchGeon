@@ -70,13 +70,11 @@ namespace PunchGeon_01
             
 
             int PSE = 120;
-            Console.BackgroundColor = ConsoleColor.DarkBlue;
-            Console.WriteLine("When you saw that you have less than 0 PS/enemy-PS attacks or skip to finish the battle. Thank you:)");
-            Console.ResetColor();
+          
             Console.WriteLine("Ohhh, you has across with an enemy");
             Console.WriteLine("The enemy attasc's you first");
 
-            while (PSE >= 1 | PS >= 1)
+            while (PSE >= 1 & PS >= 1)
             {
 
                 Random r = new Random();
@@ -156,10 +154,10 @@ namespace PunchGeon_01
                             }
 
 
-
+                            PSE = PSE - ydamage;
                             Console.WriteLine($"You have did {ydamage}");
                             Console.WriteLine($"The enemy have {PSE}");
-                            PSE = PSE - ydamage;
+                            
                             break;
 
                         case "c":
@@ -179,7 +177,7 @@ namespace PunchGeon_01
                     if (CurationsNum != 0)
                     {
                         Console.WriteLine($"\tl - {CurationsNum} Potions 20 PS");
-                    }
+                    }   
                     Console.WriteLine("\tc - Skip");
 
                     switch (Console.ReadLine())
@@ -203,16 +201,26 @@ namespace PunchGeon_01
                             }
 
 
-                          
 
 
 
+                            PSE = PSE - ydamage;
                             Console.WriteLine($"You have did {ydamage}");
                             Console.WriteLine($"The enemy have {PSE}");
-                            PSE = PSE - ydamage;
+                            
                             break;
 
                         case "l":
+
+
+                            if (CurationsNum != 0)
+                            {
+
+                                PS = PS + 30;
+                                CurationsNum = CurationsNum - 1;
+                                Console.WriteLine($"+20 PS, oyu have {PS}");
+                            }
+
                             if (CurationsNum == 0)
                             {
                                 Console.BackgroundColor = ConsoleColor.DarkMagenta;
@@ -241,6 +249,10 @@ namespace PunchGeon_01
                                             Console.WriteLine("Critial!");
                                             Console.ResetColor();
                                         }
+                                        PSE = PSE - ydamage2;
+                                        Console.WriteLine($"You have did {ydamage2}");
+                                        Console.WriteLine($"The enemy have {PSE}");
+
                                         break;
 
                                     case "c":
@@ -251,13 +263,7 @@ namespace PunchGeon_01
 
                             }
 
-                            if (CurationsNum != 0)
-                            {
-
-                                PS = PS + 30;
-                                CurationsNum = CurationsNum - 1;
-                                Console.WriteLine($"+20 PS, oyu have {PS}");
-                            }
+                           
                            
                             
                             break;
