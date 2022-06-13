@@ -5,17 +5,19 @@ namespace PunchGeon_01
     internal class Program
     {
 
+        public static int PS;
+        public static int AT;
+        public static int CurationsNum;
+        public static bool Defense;
+        public static bool Curation;
+        public static bool BloodLost;
+
 
 
         static void Main(string[] args)
         {
             
-            int PS = 0;
-            int AT = 0;
-            int CurationsNum = 0;
-            bool BloodLost = false;
-            bool Defense = false;
-            bool Curation = false;
+       
 
 
 
@@ -74,7 +76,7 @@ namespace PunchGeon_01
             Console.WriteLine("Ohhh, you has across with an enemy");
             Console.WriteLine("The enemy attasc's you first");
 
-            while (PSE >= 1 & PS >= 1)
+            while (PSE >= 1 && PS >= 1)
             {
 
                 Random r = new Random();
@@ -155,7 +157,7 @@ namespace PunchGeon_01
 
 
                             PSE = PSE - ydamage;
-                            Console.WriteLine($"You have did {ydamage}");
+                            Console.WriteLine($"You do {ydamage}");
                             Console.WriteLine($"The enemy have {PSE}");
                             
                             break;
@@ -250,7 +252,7 @@ namespace PunchGeon_01
                                             Console.ResetColor();
                                         }
                                         PSE = PSE - ydamage2;
-                                        Console.WriteLine($"You have did {ydamage2}");
+                                        Console.WriteLine($"You do {ydamage2}");
                                         Console.WriteLine($"The enemy have {PSE}");
 
                                         break;
@@ -279,6 +281,27 @@ namespace PunchGeon_01
 
 
             }
+            if (PSE < 1)
+            {
+                Console.BackgroundColor = ConsoleColor.Cyan;
+                Console.WriteLine("You beat the enemy!!! GG");
+                Console.ResetColor();
+
+                Console.WriteLine("you want to exit or stay here?");
+                Console.WriteLine("Exit - \te");
+                Console.WriteLine("Stay here - \ts");
+
+                switch (Console.ReadLine())
+                {
+                    case "e":
+                        Environment.Exit(2);
+                        break;
+
+                    case "s":
+                        break;
+
+                }
+            }
             if (PS < 1)
             {
                 Console.BackgroundColor = ConsoleColor.DarkRed;
@@ -297,27 +320,7 @@ namespace PunchGeon_01
                 }
             }
             ///////////////////////////////////////////////////////////////////////////////////////////////////////////////77
-            if (PSE < 1)
-            {
-                Console.BackgroundColor = ConsoleColor.Cyan;
-                Console.WriteLine("You beat the enemy!!! GG");
-                Console.ResetColor();
-                
-                Console.WriteLine("you want to exit or stay here?");
-                Console.WriteLine("Exit - \te");
-                Console.WriteLine("Stay here - \ts");
-
-                switch (Console.ReadLine())
-                {
-                    case "e":
-                        Environment.Exit(2);
-                        break;
-
-                    case "s":
-                        break;
-
-                }
-            }
+            
 
 
             ChatCleaner();
